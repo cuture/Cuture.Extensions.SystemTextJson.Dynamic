@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\readme.md" Link="readme.md" Pack="true" PackagePath="/" />
+    <None Include="..\..\README.md" Link="README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
@@ -32,10 +32,11 @@
   <!--Package Info-->
   <PropertyGroup>
     <Description>Extension of `System.Text.Json` to support dynamic access using `dynamic`; 对 `System.Text.Json` 的拓展，以支持使用 `dynamic` 进行动态访问</Description>
-
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    
     <Authors>Stratos</Authors>
 
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/cuture/Cuture.Extensions.SystemTextJson.Dynamic</PackageProjectUrl>
