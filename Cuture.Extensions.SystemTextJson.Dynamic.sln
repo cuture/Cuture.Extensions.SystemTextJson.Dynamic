@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmark", "benchmark", "{DB0B7D74-D2FA-4D21-A18E-6451C3F21E8E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cuture.Extensions.SystemTextJson.Dynamic.Benchmark", "benchmark\Cuture.Extensions.SystemTextJson.Dynamic.Benchmark\Cuture.Extensions.SystemTextJson.Dynamic.Benchmark.csproj", "{EE3EA901-B49B-44F6-A856-9490EFB102A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{33DE9383-D69E-4C92-998B-F50C6E42FD46}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cuture.Extensions.SystemTextJson.Dynamic", "src\Cuture.Extensions.SystemTextJson.Dynamic\Cuture.Extensions.SystemTextJson.Dynamic.csproj", "{1981D153-E60D-4D94-8E00-FEA17EA2A073}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7C9EEE6B-2D8A-4DC9-AC1B-7BD20D1FC1DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cuture.Extensions.SystemTextJson.Dynamic.Test", "test\Cuture.Extensions.SystemTextJson.Dynamic.Test\Cuture.Extensions.SystemTextJson.Dynamic.Test.csproj", "{B34A6133-2C63-4104-8641-D2E0A77A4CC4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{07D4524D-19D0-4AA4-916E-829CAE401A7F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{0D27FCA8-5DC0-4B17-A778-358D932ED0A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{55865F2D-0B13-40FA-85A7-1A6AA1F0582B}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\PublishNugetPackage.yml = .github\workflows\PublishNugetPackage.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE3EA901-B49B-44F6-A856-9490EFB102A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE3EA901-B49B-44F6-A856-9490EFB102A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE3EA901-B49B-44F6-A856-9490EFB102A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE3EA901-B49B-44F6-A856-9490EFB102A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1981D153-E60D-4D94-8E00-FEA17EA2A073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1981D153-E60D-4D94-8E00-FEA17EA2A073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1981D153-E60D-4D94-8E00-FEA17EA2A073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1981D153-E60D-4D94-8E00-FEA17EA2A073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B34A6133-2C63-4104-8641-D2E0A77A4CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B34A6133-2C63-4104-8641-D2E0A77A4CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B34A6133-2C63-4104-8641-D2E0A77A4CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B34A6133-2C63-4104-8641-D2E0A77A4CC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE3EA901-B49B-44F6-A856-9490EFB102A1} = {DB0B7D74-D2FA-4D21-A18E-6451C3F21E8E}
+		{1981D153-E60D-4D94-8E00-FEA17EA2A073} = {33DE9383-D69E-4C92-998B-F50C6E42FD46}
+		{B34A6133-2C63-4104-8641-D2E0A77A4CC4} = {7C9EEE6B-2D8A-4DC9-AC1B-7BD20D1FC1DE}
+		{55865F2D-0B13-40FA-85A7-1A6AA1F0582B} = {0D27FCA8-5DC0-4B17-A778-358D932ED0A2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62cef57c-e8bb-45a1-895a-286bfb96aedb}
+	EndGlobalSection
+EndGlobal
