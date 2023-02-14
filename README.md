@@ -48,6 +48,14 @@ var v2 = json.x[1];
 //访问属性并转换为基础数据类型
 bool b1 = json.b;
 string s1 = json.s;
+
+//局部反序列化
+MyClass obj = json.a.b; //将 json.a.b 反序列化到类型 MyClass
+
+//获取内部的原始 System.Text.Json.Nodes.* 对象
+JsonArray array = json.ArrayProperty;
+JsonObject obj = json.ObjectProperty;
+JsonNode node = json.NodeProperty;
 ```
 
 ## 修改 `JSON` 对象

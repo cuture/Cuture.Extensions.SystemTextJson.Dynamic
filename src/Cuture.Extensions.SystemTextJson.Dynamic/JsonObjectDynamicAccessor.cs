@@ -24,6 +24,24 @@ internal class JsonObjectDynamicAccessor
 
     #region Public 方法
 
+    public override IEnumerable<string> GetDynamicMemberNames()
+    {
+        foreach (var item in _jsonObject)
+        {
+            yield return item.Key;
+        }
+    }
+
+    public override bool TryConvert(ConvertBinder binder, out object? result)
+    {
+        if (binder.ReturnType == typeof(JsonObject))
+        {
+            result = _jsonObject;
+            return true;
+        }
+        return base.TryConvert(binder, out result);
+    }
+
     public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object? result)
     {
         var index = GetIndex(indexes);

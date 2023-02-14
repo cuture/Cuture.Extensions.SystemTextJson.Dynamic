@@ -15,6 +15,12 @@ internal class JsonArrayDynamicAccessor
 
     #endregion Private 字段
 
+    #region Public 属性
+
+    public int Length => _jsonArray.Count;
+
+    #endregion Public 属性
+
     #region Public 构造函数
 
     public JsonArrayDynamicAccessor(JsonArray jsonArray) : base(jsonArray)
@@ -26,9 +32,24 @@ internal class JsonArrayDynamicAccessor
 
     #region Public 方法
 
+    public override IEnumerable<string> GetDynamicMemberNames()
+    {
+        yield return "Length";
+    }
+
     public IEnumerator GetEnumerator()
     {
         return new JsonArrayEnumerator(_jsonArray);
+    }
+
+    public override bool TryConvert(ConvertBinder binder, out object? result)
+    {
+        if (binder.ReturnType == typeof(JsonArray))
+        {
+            result = _jsonArray;
+            return true;
+        }
+        return base.TryConvert(binder, out result);
     }
 
     public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object? result)

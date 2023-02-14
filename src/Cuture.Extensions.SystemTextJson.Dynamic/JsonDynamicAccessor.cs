@@ -47,6 +47,10 @@ internal abstract class JsonDynamicAccessor : DynamicObject
             {
                 result = dynamicKeyValueEnumerable.AsEnumerable();
             }
+            else if (binder.ReturnType == typeof(JsonNode))
+            {
+                result = Node;
+            }
             else
             {
                 result = Node.Deserialize(binder.ReturnType, JSON.s_defaultJsonSerializerOptions);
