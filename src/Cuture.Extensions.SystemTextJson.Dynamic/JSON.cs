@@ -28,8 +28,8 @@ public static class JSON
 
     #region Public 字段
 
-    /// <inheritdoc cref="Dynamic.Undefined"/>
-    public static readonly dynamic Undefined = Dynamic.Undefined.Instance;
+    /// <inheritdoc cref="System.Text.Json.Dynamic.Undefined"/>
+    public static readonly dynamic Undefined = System.Text.Json.Dynamic.Undefined.Instance;
 
     #endregion Public 字段
 
@@ -76,10 +76,10 @@ public static class JSON
     }
 
     /// <inheritdoc cref="Undefined.IsUndefined(in object?)"/>
-    public static bool isUndefined(object? value) => Dynamic.Undefined.IsUndefined(value);
+    public static bool isUndefined(object? value) => System.Text.Json.Dynamic.Undefined.IsUndefined(value);
 
     /// <inheritdoc cref="Undefined.IsUndefined(in Func{object?})"/>
-    public static bool isUndefined(in Func<object?> proprytyAccessDelegate) => Dynamic.Undefined.IsUndefined(proprytyAccessDelegate);
+    public static bool isUndefined(in Func<object?> proprytyAccessDelegate) => System.Text.Json.Dynamic.Undefined.IsUndefined(proprytyAccessDelegate);
 
     /// <summary>
     /// 将 <paramref name="json"/> 转换为可动态访问的 JSON 对象

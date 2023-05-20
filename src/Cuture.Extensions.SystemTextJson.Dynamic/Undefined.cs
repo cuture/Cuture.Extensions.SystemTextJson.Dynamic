@@ -163,9 +163,9 @@ public sealed class Undefined : DynamicObject
     {
         return binder.Operation switch
         {
-            Linq.Expressions.ExpressionType.IsTrue => Result(false, out result),
-            Linq.Expressions.ExpressionType.IsFalse => Result(true, out result),
-            Linq.Expressions.ExpressionType.Not => Result(true, out result),
+            System.Linq.Expressions.ExpressionType.IsTrue => Result(false, out result),
+            System.Linq.Expressions.ExpressionType.IsFalse => Result(true, out result),
+            System.Linq.Expressions.ExpressionType.Not => Result(true, out result),
             _ => throw GetInvalidOperationException(),
         };
 
