@@ -105,3 +105,17 @@ IEnumerable<KeyValuePair<string, dynamic?>> enumerable = json;
 //通过IDynamicKeyValueEnumerable
 var enumerable = ((IDynamicKeyValueEnumerable)json).AsEnumerable();
 ```
+
+## Index && Range
+
+支持使用 Index 和 Range 语法访问数组
+
+Note: 当前使用 Range 语法将会创建新的对象，对其修改不会反映到原始对象
+
+```C#
+//Index
+var value = json.Array[^1];
+
+//Range
+var items = json.Array[..1];
+```

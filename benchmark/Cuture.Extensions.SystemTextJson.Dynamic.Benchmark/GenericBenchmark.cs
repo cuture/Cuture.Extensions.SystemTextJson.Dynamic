@@ -8,6 +8,7 @@ namespace Cuture.Extensions.SystemTextJson.Dynamic;
 [SimpleJob(RuntimeMoniker.Net472)]
 [SimpleJob(RuntimeMoniker.Net60)]
 [SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.Net80)]
 [MemoryDiagnoser]
 public class GenericBenchmark
 {
