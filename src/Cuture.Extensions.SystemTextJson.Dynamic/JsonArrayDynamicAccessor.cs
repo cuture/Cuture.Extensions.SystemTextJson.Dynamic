@@ -124,6 +124,111 @@ internal class JsonArrayDynamicAccessor
         return base.TryGetMember(binder, out result);
     }
 
+    public override bool TryInvokeMember(InvokeMemberBinder binder, object?[]? args, out object? result)
+    {
+        switch (binder.Name.ToLowerInvariant())
+        {
+            case "insert":
+                {
+                    if (args?.Length != 2
+                        || args[0] is not int index)
+                    {
+                        throw new InvalidOperationException($"Method \"{binder.Name}\" for array must has 2 argument with 'index' and 'value'.");
+                    }
+
+                    if (index < _jsonArray.Count)
+                    {
+                        var node = JsonNode.Parse(JSON.stringify(args[1]));
+                        _jsonArray.Insert(index, node);
+
+                        result = JsonNodeUtil.GetNodeAccessValue(node);
+                    }
+                    else
+                    {
+                        result = SetValueAtIndex(index, args[1]);
+                    }
+
+                    return true;
+                }
+
+            case "append":
+            case "add":
+            case "push":
+                {
+                    if (args?.Length > 0 != true)
+                    {
+                        throw new InvalidOperationException($"Method \"{binder.Name}\" for array must has argument.");
+                    }
+
+                    result = null;
+
+                    foreach (var item in args)
+                    {
+                        result = SetValueAtIndex(_jsonArray.Count, item);
+                    }
+                    return true;
+                }
+
+            case "pop":
+                {
+                    var index = _jsonArray.Count - 1;
+                    if (index >= 0)
+                    {
+                        result = JsonNodeUtil.GetNodeAccessValue(_jsonArray[index]);
+                        _jsonArray.RemoveAt(index);
+                    }
+                    else
+                    {
+                        result = null;
+                    }
+                    return true;
+                }
+
+            case "removeat":
+                {
+                    if (args?.Length != 1
+                        || args[0] is not int index)
+                    {
+                        throw new InvalidOperationException($"Method \"{binder.Name}\" for array must has 1 argument with 'index'.");
+                    }
+                    var node = _jsonArray[index];
+                    _jsonArray.RemoveAt(index);
+                    result = JsonNodeUtil.GetNodeAccessValue(node);
+                    return true;
+                }
+
+            case "clear":
+            case "removeall":
+                {
+                    while (_jsonArray.Count > 0)
+                    {
+                        _jsonArray.RemoveAt(0);
+                    }
+                    result = null;
+                    return true;
+                }
+
+            case "first":
+            case "firstordefault":
+                {
+                    result = _jsonArray.Count > 0
+                             ? JsonNodeUtil.GetNodeAccessValue(_jsonArray[0])
+                             : null;
+                    return true;
+                }
+
+            case "last":
+            case "lastordefault":
+                {
+                    result = _jsonArray.Count > 0
+                             ? JsonNodeUtil.GetNodeAccessValue(_jsonArray[_jsonArray.Count - 1])
+                             : null;
+                    return true;
+                }
+        }
+        return base.TryInvokeMember(binder, args, out result);
+    }
+
     public override bool TrySetIndex(SetIndexBinder binder, object[] indexes, object? value)
     {
         if (indexes.Length > 1)
@@ -135,11 +240,7 @@ internal class JsonArrayDynamicAccessor
 
         if (index is int intIndex)
         {
-            while (intIndex >= _jsonArray.Count)
-            {
-                _jsonArray.Add(null);
-            }
-            _jsonArray[intIndex] = JsonNode.Parse(JSON.stringify(value));
+            SetValueAtIndex(intIndex, value);
             return true;
         }
 #if NET6_0_OR_GREATER
@@ -169,6 +270,22 @@ internal class JsonArrayDynamicAccessor
     #endregion IDynamicEnumerable
 
     #endregion Public 方法
+
+    #region Private 方法
+
+    private object? SetValueAtIndex(int index, object? value)
+    {
+        while (index >= _jsonArray.Count)
+        {
+            _jsonArray.Add(null);
+        }
+        var node = JsonNode.Parse(JSON.stringify(value));
+        _jsonArray[index] = node;
+
+        return JsonNodeUtil.GetNodeAccessValue(node);
+    }
+
+    #endregion Private 方法
 
     #region Private 类
 

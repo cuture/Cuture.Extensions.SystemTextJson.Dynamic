@@ -44,6 +44,15 @@ var c = json.a.b.c;
 
 //访问数组
 var v2 = json.x[1];
+var v3 = json.x.last();
+var v4 = json.x.first();
+var v5 = json.x.push(obj);
+var v6 = json.x.pop();
+var v7 = json.x.add(obj);
+var v8 = json.x.append(obj);
+var v9 = json.x.insert(1,obj);
+var va = json.x.RemoveAt(1);
+json.x.clear();
 
 //访问属性并转换为基础数据类型
 bool b1 = json.b;
