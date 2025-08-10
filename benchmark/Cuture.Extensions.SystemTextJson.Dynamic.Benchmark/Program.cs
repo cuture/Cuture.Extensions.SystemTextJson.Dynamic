@@ -1,5 +1,4 @@
-﻿using BenchmarkDotNet.Running;
-
-using Cuture.Extensions.SystemTextJson.Dynamic;
+﻿using System.Text.Json.Dynamic;
+using BenchmarkDotNet.Running;
 
 BenchmarkRunner.Run<GenericBenchmark>();

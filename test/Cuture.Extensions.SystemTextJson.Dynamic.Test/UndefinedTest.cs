@@ -66,18 +66,18 @@ public class UndefinedTest
     {
         DynamicJSONTestClass.GetTestValue(out _, out var json);
 
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield[1]);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield.length);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield + 1);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield - 1);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield * 1);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield / 1);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield % 1);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield ^ 1);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield | 1);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield & 1);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield << 1);
-        Assert.ThrowsException<InvalidOperationException>(() => json.notexistfield >> 1);
-        Assert.ThrowsException<InvalidOperationException>(() => ~json.notexistfield);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield[1]);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield.length);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield + 1);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield - 1);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield * 1);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield / 1);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield % 1);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield ^ 1);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield | 1);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield & 1);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield << 1);
+        Assert.ThrowsExactly<InvalidOperationException>(() => json.notexistfield >> 1);
+        Assert.ThrowsExactly<InvalidOperationException>(() => ~json.notexistfield);
     }
 }

@@ -107,8 +107,8 @@ public class JSONArrayAccessTest
     {
         DynamicJSONTestClass.GetTestValue(out var origin, out var json);
 
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => Access(json.MyProperty6[json.MyProperty6.length + 1]));
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => Access(json.MyProperty6[-1]));
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => Access(json.MyProperty6[json.MyProperty6.length + 1]));
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => Access(json.MyProperty6[-1]));
     }
 
     #endregion Public 方法

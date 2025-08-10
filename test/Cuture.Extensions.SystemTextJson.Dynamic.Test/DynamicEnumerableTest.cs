@@ -10,13 +10,13 @@ public class DynamicEnumerableTest
     {
         DynamicJSONTestClass.GetTestValue(out var origin, out var json);
 
-        Assert.ThrowsException<InvalidCastException>(() => (IEnumerable<dynamic>)json.MyProperty6);
-        Assert.ThrowsException<InvalidCastException>(() => (IEnumerable<KeyValuePair<string, dynamic?>>)json.MyProperty6);
-        Assert.ThrowsException<InvalidCastException>(() => (IDynamicKeyValueEnumerable)json.MyProperty6);
+        Assert.ThrowsExactly<InvalidCastException>(() => (IEnumerable<dynamic>)json.MyProperty6);
+        Assert.ThrowsExactly<InvalidCastException>(() => (IEnumerable<KeyValuePair<string, dynamic?>>)json.MyProperty6);
+        Assert.ThrowsExactly<InvalidCastException>(() => (IDynamicKeyValueEnumerable)json.MyProperty6);
 
-        Assert.ThrowsException<InvalidCastException>(() => (IEnumerable<dynamic>)json);
-        Assert.ThrowsException<InvalidCastException>(() => (IEnumerable<KeyValuePair<string, dynamic?>>)json);
-        Assert.ThrowsException<InvalidCastException>(() => (IDynamicEnumerable)json);
+        Assert.ThrowsExactly<InvalidCastException>(() => (IEnumerable<dynamic>)json);
+        Assert.ThrowsExactly<InvalidCastException>(() => (IEnumerable<KeyValuePair<string, dynamic?>>)json);
+        Assert.ThrowsExactly<InvalidCastException>(() => (IDynamicEnumerable)json);
     }
 
     [TestMethod]

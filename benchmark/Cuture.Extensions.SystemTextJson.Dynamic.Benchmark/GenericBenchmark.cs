@@ -1,14 +1,10 @@
-﻿using System.Text.Json;
-using System.Text.Json.Dynamic;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 
-namespace Cuture.Extensions.SystemTextJson.Dynamic;
+namespace System.Text.Json.Dynamic;
 
-[SimpleJob(RuntimeMoniker.Net472)]
-[SimpleJob(RuntimeMoniker.Net60)]
-[SimpleJob(RuntimeMoniker.Net70)]
 [SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90)]
 [MemoryDiagnoser]
 public class GenericBenchmark
 {
@@ -59,7 +55,7 @@ public class GenericBenchmark
 internal class Address
 {
     public AddressCode? Code { get; set; }
-    public string Name { get; set; }
+    public required string Name { get; set; }
 }
 
 internal class User
@@ -72,5 +68,5 @@ internal class User
 internal class AddressCode
 {
     public int Code { get; set; }
-    public string Name { get; set; }
+    public required string Name { get; set; }
 }
