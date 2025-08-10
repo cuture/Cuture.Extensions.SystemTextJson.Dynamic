@@ -13,7 +13,7 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 
-    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="System.Text.Json" Version="8.0.*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,7 +39,7 @@
     
     <Authors>Stratos</Authors>
 
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/cuture/Cuture.Extensions.SystemTextJson.Dynamic</PackageProjectUrl>
