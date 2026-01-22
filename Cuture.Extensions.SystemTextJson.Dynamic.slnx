@@ -1,17 +1,20 @@
 <Solution>
-  <Folder Name="/.github/" />
-  <Folder Name="/.github/workflows/">
-    <File Path=".github/workflows/PublishNugetPackage.yml" />
-  </Folder>
   <Folder Name="/benchmark/">
     <Project Path="benchmark/Cuture.Extensions.SystemTextJson.Dynamic.Benchmark/Cuture.Extensions.SystemTextJson.Dynamic.Benchmark.csproj" />
   </Folder>
   <Folder Name="/solution items/">
     <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="CodeMaid.config" />
     <File Path="Directory.Build.props" />
     <File Path="global.json" />
     <File Path="LICENSE.txt" />
     <File Path="README.md" />
+  </Folder>
+  <Folder Name="/solution items/.github/" />
+  <Folder Name="/solution items/.github/workflows/">
+    <File Path=".github/workflows/PublishNugetPackage.yml" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/Cuture.Extensions.SystemTextJson.Dynamic/Cuture.Extensions.SystemTextJson.Dynamic.csproj" />

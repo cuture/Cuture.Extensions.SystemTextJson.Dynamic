@@ -3,13 +3,16 @@
 on:
   release:
     types: [released,prereleased]
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   publish-with-build:
 
     runs-on: ubuntu-latest
-
+    
+    permissions:
+      id-token: write
+      
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET Core SDK
@@ -18,15 +21,21 @@ jobs:
         dotnet-version: |
           8.x
           9.x
-    - name: restore dependencies
-      run: dotnet restore
+          10.x
     - name: build
-      run: dotnet build --no-restore -c Release
+      run: dotnet build -c Release
     - name: test
-      run: dotnet test -f net9.0 && dotnet test -c Release -f net9.0
+      run: dotnet test --no-restore -c Release
     - name: pack
       run: dotnet pack -c Release -o ./output
+
+    - name: NuGet login
+      uses: NuGet/login@v1
+      id: login
+      with:
+        user: ${{ secrets.NUGET_USER }}
+
     - name: push package
       shell: pwsh
       working-directory: ./output
-      run: Get-ChildItem -File -Filter '*.nupkg' | ForEach-Object { dotnet nuget push $_ -k ${{secrets.NUGET_KEY}} -s https://api.nuget.org/v3/index.json --no-service-endpoint --skip-duplicate; dotnet nuget push $_ -k ${{secrets.NUGET_GITHUB_KEY}} -s https://nuget.pkg.github.com/stratosblue/index.json --no-service-endpoint --skip-duplicate; }
+      run: Get-ChildItem -File -Filter '*.nupkg' | ForEach-Object { dotnet nuget push $_ -k ${{steps.login.outputs.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json --no-service-endpoint --skip-duplicate; dotnet nuget push $_ -k ${{secrets.NUGET_GITHUB_KEY}} -s https://nuget.pkg.github.com/StratosBlue/index.json --no-service-endpoint --skip-duplicate; }
