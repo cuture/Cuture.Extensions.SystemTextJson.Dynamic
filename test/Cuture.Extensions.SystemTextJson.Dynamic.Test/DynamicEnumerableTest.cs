@@ -157,5 +157,60 @@ public class DynamicEnumerableTest
         }
     }
 
+    [TestMethod]
+    public void ShouldModifyPropertySuccess()
+    {
+        DynamicJSONTestClass.GetTestValue(out var origin, out var json);
+        DynamicJSONTestClass.GetTestValue(out var origin2, out var json2);
+
+        //IDynamicEnumerable
+        {
+            var originEnumerable = ((IDynamicKeyValueEnumerable)json2.MyProperty8).AsEnumerable();
+
+            foreach (var item in ((IDynamicKeyValueEnumerable)json.MyProperty8).AsEnumerable())
+            {
+                item.Value.Value1 = item.Value.Value1 + 1;
+            }
+
+            foreach (var item in ((IDynamicKeyValueEnumerable)json.MyProperty8).AsEnumerable())
+            {
+                Check(origin2.MyProperty8, item.Key, item.Value);
+            }
+        }
+
+        //IDynamicEnumerable
+        {
+            var originEnumerable = ((IDynamicEnumerable)json2.MyProperty7).AsEnumerable();
+
+            foreach (var item in ((IDynamicEnumerable)json.MyProperty7).AsEnumerable())
+            {
+                item.Value1 = item.Value1 + 1;
+            }
+
+            int index = 0;
+            foreach (var item in ((IDynamicEnumerable)json.MyProperty7).AsEnumerable())
+            {
+                AreNotEqual(originEnumerable.Skip(index++).First(), item);
+            }
+        }
+
+        static void Check(object origin, string key, dynamic value)
+        {
+            var type = origin.GetType();
+            var originProperty = type.GetProperty(key);
+            Assert.IsNotNull(originProperty);
+
+            var originValue = originProperty.GetValue(origin);
+
+            AreNotEqual(originValue, value);
+        }
+
+        static void AreNotEqual(object originValue, dynamic value)
+        {
+            //直接比较有点麻烦。。直接转json字符串比较
+            Assert.AreNotEqual(JsonSerializer.Serialize(originValue), JSON.stringify(value));
+        }
+    }
+
     #endregion Public 方法
 }

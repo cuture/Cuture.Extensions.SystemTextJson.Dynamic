@@ -21,7 +21,11 @@ internal class DynamicJSONTestClass
         }
     };
 
-    public string[] MyProperty6 { get; set; } = new[] { "1", "2", "3", "4", "5" };
+    public string[] MyProperty6 { get; set; } = ["1", "2", "3", "4", "5"];
+
+    public NestedClass[] MyProperty7 { get; set; } = [new() { Value1 = 1, Value2 = "1" }, new() { Value1 = 2, Value2 = "2" }, new() { Value1 = 3, Value2 = "3" }];
+
+    public NestedClassCollection MyProperty8 { get; set; } = new();
 
     public int? NullableProperty { get; set; } = null;
 
@@ -55,7 +59,43 @@ internal class DynamicJSONTestClass
                 Assert.AreEqual(MyProperty6[i], json.MyProperty6[i]);
             }
         }
+
+        if (MyProperty6?.Length > 0)
+        {
+            for (int i = 0; i < MyProperty6.Length; i++)
+            {
+                Assert.AreEqual(MyProperty6[i], json.MyProperty6[i]);
+            }
+        }
     }
 
     #endregion Public 方法
+
+    #region Public 类
+
+    public class NestedClass
+    {
+        #region Public 属性
+
+        public int Value1 { get; set; }
+
+        public string Value2 { get; set; }
+
+        #endregion Public 属性
+    }
+
+    public class NestedClassCollection
+    {
+        #region Public 属性
+
+        public NestedClass Property1 { get; set; } = new() { Value1 = 1, Value2 = "1" };
+
+        public NestedClass Property2 { get; set; } = new() { Value1 = 2, Value2 = "3" };
+
+        public NestedClass Property3 { get; set; } = new() { Value1 = 2, Value2 = "3" };
+
+        #endregion Public 属性
+    }
+
+    #endregion Public 类
 }

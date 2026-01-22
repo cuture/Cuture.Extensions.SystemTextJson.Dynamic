@@ -102,6 +102,13 @@ public static class JSON
         return new JsonObjectDynamicAccessor(jsonNode);
     }
 
+    /// <summary>
+    /// 判断<paramref name="value"/>是否为数组
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static bool isArray(object? value) => value is Array || value is JsonArrayDynamicAccessor || value is JsonArray;
+
     /// <inheritdoc cref="Undefined.IsUndefined(in object?)"/>
     public static bool isUndefined(object? value) => System.Text.Json.Dynamic.Undefined.IsUndefined(value);
 

@@ -78,7 +78,7 @@ internal class JsonObjectDynamicAccessor
     {
         foreach (var item in _jsonObject)
         {
-            yield return new(item.Key, JSON.create(item.Value));
+            yield return new(item.Key, JSON.dynamic(item.Value));
         }
     }
 
