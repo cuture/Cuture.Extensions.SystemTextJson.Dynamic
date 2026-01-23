@@ -6,6 +6,31 @@ public class DynamicEnumerableTest
     #region Public 方法
 
     [TestMethod]
+    public void Should_Array_EqualOrigin()
+    {
+        DynamicJSONTestClass.GetTestValue(out var origin, out var json);
+
+        var index = 0;
+        foreach (var item in json.MyProperty6)
+        {
+            Check(origin.MyProperty6[index++], item);
+        }
+
+        index = 0;
+
+        foreach (dynamic item in json.MyProperty7)
+        {
+            Check(origin.MyProperty7[index++], item);
+        }
+
+        static void Check(object originValue, dynamic value)
+        {
+            //直接比较有点麻烦。。直接转json字符串比较
+            Assert.AreEqual(JsonSerializer.Serialize(originValue), JSON.stringify(value));
+        }
+    }
+
+    [TestMethod]
     public void ShouldCastFail()
     {
         DynamicJSONTestClass.GetTestValue(out var origin, out var json);
@@ -90,7 +115,7 @@ public class DynamicEnumerableTest
         var filtered = origin.MyProperty6.Where(m => m[0] > '1').ToArray();
         var dynamicFiltered = enumerable.Where(m => m[0] > '1').ToArray();
 
-        Assert.AreEqual(filtered.Length, dynamicFiltered.Length);
+        Assert.HasCount(filtered.Length, dynamicFiltered);
 
         for (int i = 0; i < filtered.Length; i++)
         {
@@ -107,7 +132,7 @@ public class DynamicEnumerableTest
 
         var dynamicToArray = enumerable.ToArray();
 
-        Assert.AreEqual(origin.MyProperty6.Length, dynamicToArray.Length);
+        Assert.HasCount(origin.MyProperty6.Length, dynamicToArray);
 
         for (int i = 0; i < origin.MyProperty6.Length; i++)
         {
@@ -128,6 +153,18 @@ public class DynamicEnumerableTest
             {
                 Check(origin, item.Key, item.Value);
             }
+        }
+
+        //foreach
+        foreach (var item in json)
+        {
+            Check(origin, item.Key, item.Value);
+        }
+
+        //typed foreach
+        foreach (JsonKeyValuePair item in json)
+        {
+            Check(origin, item.Key, item.Value);
         }
 
         //IEnumerable<dynamic>

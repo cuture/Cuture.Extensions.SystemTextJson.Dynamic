@@ -62,9 +62,9 @@ string s1 = json.s;
 MyClass obj = json.a.b; //将 json.a.b 反序列化到类型 MyClass
 
 //获取内部的原始 System.Text.Json.Nodes.* 对象
-JsonArray array = json.ArrayProperty;
-JsonObject obj = json.ObjectProperty;
-JsonNode node = json.NodeProperty;
+JsonArray array = json.XXArrayProperty; //显式类型转换
+JsonObject obj = json.XXXObjectProperty;  //显式类型转换
+JsonNode node = json.XXXXNodeProperty;  //显式类型转换
 ```
 
 ## 修改 `JSON` 对象
@@ -103,14 +103,37 @@ var b4 = JSON.isUndefined(() => json.a.b.c.e.f.g.h.i.j.k);
 
 ```C#
 //遍历Array
+
+//foreach遍历
+foreach (var item in json.XXArrayProperty)
+{
+}
+
 //显式赋值类型
 IEnumerable<dynamic> enumerable = json.Array;
+
 //通过IDynamicEnumerable
 var enumerable = ((IDynamicEnumerable)json.Array).AsEnumerable();
 
 //遍历属性
+
+//foreach遍历
+foreach (var item in json.XXArrayProperty)
+{
+    //item.Key
+    //item.Value
+}
+
+//类型化的foreach遍历
+foreach (JsonKeyValuePair item in json.XXArrayProperty)
+{
+    //item.Key
+    //item.Value
+}
+
 //显式赋值类型
 IEnumerable<KeyValuePair<string, dynamic?>> enumerable = json;
+
 //通过IDynamicKeyValueEnumerable
 var enumerable = ((IDynamicKeyValueEnumerable)json).AsEnumerable();
 ```

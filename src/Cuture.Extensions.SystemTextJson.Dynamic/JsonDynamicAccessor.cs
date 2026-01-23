@@ -1,4 +1,5 @@
-﻿using System.Dynamic;
+﻿using System.Collections;
+using System.Dynamic;
 using System.Text.Json.Nodes;
 
 namespace System.Text.Json.Dynamic;
@@ -50,6 +51,17 @@ internal abstract class JsonDynamicAccessor : DynamicObject
             else if (binder.ReturnType == typeof(JsonNode))
             {
                 result = Node;
+            }
+            else if (binder.ReturnType == typeof(IEnumerable))
+            {
+                if (this is IDynamicEnumerable dynamicEnumerable)
+                {
+                    result = dynamicEnumerable.AsEnumerable();
+                }
+                else if (this is IDynamicKeyValueEnumerable localDynamicKeyValueEnumerable)
+                {
+                    result = localDynamicKeyValueEnumerable.AsEnumerable();
+                }
             }
             else
             {
