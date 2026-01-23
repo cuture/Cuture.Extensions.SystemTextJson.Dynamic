@@ -118,14 +118,14 @@ var enumerable = ((IDynamicEnumerable)json.Array).AsEnumerable();
 //遍历属性
 
 //foreach遍历
-foreach (var item in json.XXArrayProperty)
+foreach (var item in json)
 {
     //item.Key
     //item.Value
 }
 
 //类型化的foreach遍历
-foreach (JsonKeyValuePair item in json.XXArrayProperty)
+foreach (JsonKeyValuePair item in json)
 {
     //item.Key
     //item.Value
