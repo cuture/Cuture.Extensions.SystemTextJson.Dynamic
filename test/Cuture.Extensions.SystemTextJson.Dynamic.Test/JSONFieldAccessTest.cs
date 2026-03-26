@@ -15,6 +15,11 @@ public class JSONFieldAccessTest
         Assert.IsTrue(json.notexistfield == null);
         Assert.IsTrue(json.notexistfield == JSON.Undefined);
         Assert.IsTrue(JSON.isUndefined(json.notexistfield));
+
+        var propertyName = "notexistfield";
+        Assert.IsTrue(json[propertyName] == null);
+        Assert.IsTrue(json[propertyName] == JSON.Undefined);
+        Assert.IsTrue(JSON.isUndefined(json[propertyName]));
     }
 
     #endregion Public 方法

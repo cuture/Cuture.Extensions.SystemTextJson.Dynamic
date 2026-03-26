@@ -100,8 +100,8 @@ internal class JsonObjectDynamicAccessor
             result = JsonNodeUtil.GetNodeAccessValue(jsonNode);
             return true;
         }
-        result = null;
-        return false;
+        result = JSON.Undefined;
+        return true;
     }
 
     #endregion Private 方法
